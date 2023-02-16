@@ -1,9 +1,12 @@
 on load:
-    set bow named "&4&lBow of Fire" of flame
+    set {bowoffire} to bow named "&4&lBow of Fire"
 
-on shoot with bow:
-    if player's tool is bow named "&4&lBow of Fire" of flame:
-        set projectile's name to {%player%.arrow}
-
+on shoot:
+    if shooter's tool is bow named "&4&lBow of Fire":
+        set projectile's name to {%shooter%.arrow}
+		
 on projectile hit:
-    if projectile is arrow named {}
+    if projectile is arrow named {%shooter%.arrow}:
+        set block at projectiles location to fire
+        kill projectile
+        give shooter arrow
